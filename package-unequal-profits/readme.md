@@ -1,7 +1,7 @@
 ---
 title: Replicating the output for the unequal profit distribution
 author: François LeGrand, Alaïs Martin-Baillon, Xavier Ragot
-date: December, 17 2022
+date: December, 19 2022
 colorlinks: true
 ---
 Replicating the output for the unequal profit distribution
