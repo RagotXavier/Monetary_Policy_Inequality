@@ -1,5 +1,5 @@
 ---
-title: Replicating the output of *Should monetary policy care about redistribution? Optimal monetary and fiscal policy with heterogeneous agents* 
+[//]: # title: Replicating the output of *Should monetary policy care about redistribution? Optimal monetary and fiscal policy with heterogeneous agents* 
 author: François LeGrand, Alaïs Martin-Baillon, Xavier Ragot
 date: December, 17 2022
 colorlinks: true
