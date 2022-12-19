@@ -4,6 +4,8 @@ author: François LeGrand, Alaïs Martin-Baillon, Xavier Ragot
 date: December, 17 2022
 colorlinks: true
 ---
+Replicating the output for the benchmark specification (uniform truncation)
+=====
 
 This set of files replicates the graphs and data of *Should monetary policy care about redistribution? Optimal monetary and fiscal policy with heterogeneous agents* in the case of **the main specification** in the case of the uniform truncation (Section 5 of the paper). 
 
