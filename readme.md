@@ -12,4 +12,4 @@ This set of files replicates the graphs and data of *Should monetary policy care
 1. The [`package-benchmark`](./package-benchmark/) folder contains the files for the benchmark case (Section 5 of the paper).
 2. The [`package-unequal-profits`](./package-unequal-profits/) contains the files for the case with unequal profit distribution (Sections 6.2 and G of the paper).
    
-Please the read the readme in each folder for detailed instructions.
+Please refer to the readme file in each folder for detailed instructions.
