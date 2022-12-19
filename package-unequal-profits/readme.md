@@ -4,6 +4,8 @@ author: François LeGrand, Alaïs Martin-Baillon, Xavier Ragot
 date: December, 17 2022
 colorlinks: true
 ---
+Replicating the output for the unequal profit distribution
+=====================================
 
 This set of files replicates the graphs and data of *Should monetary policy care about redistribution? Optimal monetary and fiscal policy with heterogeneous agents* in the case of **unequal profit distribution** (Sections 6.2 and G of the paper). 
 
