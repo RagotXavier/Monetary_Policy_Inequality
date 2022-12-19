@@ -4,6 +4,7 @@ author: François LeGrand, Alaïs Martin-Baillon, Xavier Ragot
 date: December, 17 2022
 colorlinks: true
 ---
+% Title
 
 This set of files replicates the graphs and data of *Should monetary policy care about redistribution? Optimal monetary and fiscal policy with heterogeneous agents*. 
 
