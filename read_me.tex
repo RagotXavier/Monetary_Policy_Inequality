@@ -1,0 +1,255 @@
+%% LyX 2.3.7 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+
+\makeatletter
+\@ifundefined{date}{}{\date{}}
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\title{Replicating package\emph{: Should monetary policy care about redistribution?
+Optimal monetary and fiscal policy with heterogeneous agents. }}
+\author{François Le Grand, Alaïs Martin-Baillon, Xavier Ragot }
+
+\maketitle
+This set of files replicates the graphs and data of\emph{ Should monetary
+policy care about redistribution? Optimal monetary and fiscal policy
+with heterogeneous agents. }Be careful of not mixing up these files
+with other replicating files and they should be located in an independent
+folder. Requires Matlab or Octave / Julia / Dynare. Tested on Matlab
+2018b, Dynare 5.4 and Julia release v1.10.0. 
+\begin{enumerate}
+\item All the .ipynb files are Julia (https://julialang.org/) notebook. 
+\item All the .m files can be runned in Matlab or Octave (https://octave.org/).
+Most require Dynare (https://www.dynare.org/). 
+\end{enumerate}
+
+\section{Quantitative assessment of the sticky-price model.}
+
+\subsection{How to run?}
+
+In this order:
+\begin{enumerate}
+\item Open `Sticky\_Prices/steady\_state/Main\_SP.ipynb' and execute all
+cells. 
+\item Run `Sticky\_Prices/dynamics/main\_SP.m'.
+\item Run `Sticky\_Prices/dynamics/main\_SP.m'. \textbf{Comment the line
+3 ``calib = 'baseline' `` and uncomment the line 4 ``calib = refined''}.
+\item Run `Sticky\_Prices/dynamics/main\_taylor\_SP.m'.
+\item Run `Sticky\_Prices/dynamics/unequal.m'.
+\end{enumerate}
+Output: 
+\begin{enumerate}
+\item Figure 1: Run `Sticky\_Prices/dynamics/Do\_IRFs\_SP\_baseline.m'.
+\item Tables 7/8: Run `Sticky\_Prices/steady\_state/Tables\_SP.ipynb'.
+\item Figure 7: Run `Sticky\_Prices/dynamics/Do\_IRFs\_SP\_unequal.m'.
+\end{enumerate}
+
+\subsection{The details}
+\begin{itemize}
+\item The `Julia` files takes care of computing the steady state, while
+the .m file simulates the model in the presence of aggregate shocks. 
+\end{itemize}
+The output of the `Julia' files is: 
+\begin{enumerate}
+\item a file `todynare\_SP\_baseline.mat'
+\item a file `todynare\_SP\_refined.mat' 
+\item a file `To\_IRFs\_SP\_unequal.mat' 
+\end{enumerate}
+Those files will be used by main.m, main\_taylor.m, unequal.m
+\begin{itemize}
+\item The outputs of the `Octave' / `Matlab' files are: 
+\begin{itemize}
+\item `To\_IRFs\_SP\_baseline.mat' 
+\item `To\_IRFs\_SP\_taylor.mat'
+\item `To\_IRFs\_SP\_unequal.mat'
+\end{itemize}
+\end{itemize}
+Then:
+\begin{itemize}
+\item `Do\_IRFs\_SP\_baseline.m' generate the Figure 1: `IRFs\_SP\_Eco\_1\_2\_taylor.png' 
+\item `Do\_IRFs\_SP\_unequal.m' generate the Figure 7: `IRFs\_SP\_uneq\_Eco\_1\_2.png' 
+\end{itemize}
+.The output of the `Julia' file is also:
+\begin{enumerate}
+\item 6 files: moments\_eco1/2\_baseline, 'moments\_taylor', moments\_eco1/2\_refined
+\end{enumerate}
+Those files will be used by the Julia file `Tables.ipynb' to display
+the tables for First- and second-order moments for key variables. 
+
+\subsection{The steady state computation}
+
+The steady state is computed thanks to nine `Julia` notebooks. Each
+of above files are commented and self-explained.
+\begin{itemize}
+\item `Main.ipynb': Solves the steady-state model and returns the truncated
+model (as `steady\_state\_dynare.mat` for `Dynare`, saved in the current
+folder);
+\item `Structures.ipynb`: Structures and parameter calibration from targets;
+\item `Utils.ipynb`: Contains some useful functions;
+\item `SolveAiyagari.ipynb`: Solves the Aiyagari model;
+\item `Projection.ipynb`: Computes the steady-state truncated model;
+\item `Projection\_ref.ipynb`: Computes the steady-state redined truncated
+model;
+\item `Ramsey.ipynb`: Computes the steady-state Lagrange multipliers.
+\item `Simulation.ipynb': : Contains a function used to display tables of
+first and second order moments of key variables;
+\item `Tables.ipynb': Display tables of first and second order moments of
+key variables;
+\end{itemize}
+Simulating the model with aggregate shocks, 
+\begin{itemize}
+\item The file `main.m` simulates the model for the first two economies
+of the paper. For the baseline truncation or the refined truncation
+depending on the line 3 and 4 of the file. 
+\begin{itemize}
+\item Economy 1: optimal inflation
+\item Economy 2: constant inflation
+\end{itemize}
+\item The file `main\_taylor.m` simulates the model for third economy of
+the paper:
+\begin{itemize}
+\item Economy 3: Taylor Rule
+\end{itemize}
+\end{itemize}
+The outcomes of the program can be parametrized as follows:
+\begin{itemize}
+\item The `Octave' / `Matlab' actually writes different `Dynare' codes 
+\begin{itemize}
+\item `code\_dynare\_baseline1.mod', `code\_dynare\_baseline2.mod', `code\_dynare\_taylor.mod'
+which correspond to the three economies of the baseline specifiation. 
+\item `code\_dynare\_refined1.mod', `code\_dynare\_refined2.mod'.
+\item `code\_dynare\_unequal1.mod', `code\_dynare\_unequal2.mod'
+\end{itemize}
+\end{itemize}
+Each of this code is then solved in `Dynare'. These files, as interim
+Dynare files are created in the current folder.
+
+\subsection{Comparisons with the Reiter method}
+
+\subsubsection{How to run?}
+
+In this order:
+\begin{enumerate}
+\item Open `Reiter/steady\_state/Main\_Reiter\_Comp.ipynb' and execute all
+cells.
+\item Run `Reiter/dynamics/reiter\_comp.m'. 
+\item Run `Reiter/dynamics/refined\_comp.m'. 
+\item Run `Reiter/dynamics/code\_difference.m' . 
+\end{enumerate}
+Output: 
+\begin{itemize}
+\item Figure 8: run `Reiter/dynamics/fig\_Comp\_Reiter\_Trunc.m' 
+\item Table 11: run `Reiter/steady\_state/Tables\_Reiter\_Comp.ipynb' cells
+1 to 4 
+\item Table 12 : run `Reiter/steady\_state/Tables\_Reiter\_Comp.ipynb' cell
+5
+\end{itemize}
+
+\subsubsection{The details}
+
+The output of the `Julia' files is: 
+\begin{itemize}
+\item a file `todynare\_Comp\_Reiter.mat'
+\item a file `todynare\_Comp\_Refined.mat'
+\end{itemize}
+Those files will be used by `reiter\_comp.m, `refined\_comp.m' 
+\begin{itemize}
+\item The outputs of the `Octave' / `Matlab' files are: 
+\begin{itemize}
+\item `todiff\_Reiter IRFs.mat' save the IRFs of the Reiter simulation 
+\item `todiff\_Comp\_Refined.mat' save the IRFs of the refined truncation
+\item `moments\_Comp\_Reiter.mat' save the moments of the Reiter simulation 
+\item `moments\_Comp\_Refined.mat' save the moments of model with the refined
+truncation 
+\item `to\_code\_difference\_reiter.mat' save the result of the Reiter simulation 
+\item `to\_code\_difference\_refined.mat' save the result of the refined
+truncation simulation
+\item Then those files will be used by `code\_difference.m' to generate
+`diff\_Reiter.mat': save the result for table 12. 
+\end{itemize}
+\item Finally: 
+\begin{itemize}
+\item `Reiter/steady\_dynamics/fig\_Comp\_Reiter\_Trunc.m' generates the
+Figure 8: `Comp\_Reiter\_Trunc.png' 
+\item `Reiter/steady\_state/Tables\_Reiter\_Comp.m' displays Table 11 and
+12. 
+\end{itemize}
+\end{itemize}
+
+\section{Quantitative assessment of the sticky-wage model.}
+
+\subsection{How to run?}
+
+In this order:
+\begin{enumerate}
+\item Open `Sticky\_Wages/steady\_state/Main\_SW.ipynb' and execute all
+cells. 
+\item Run `Sticky\_Wages/dynamics/main\_SW.m'. 
+\item Run `Sticky\_Wages/dynamics/main\_taylor\_SW.m'.
+\end{enumerate}
+Output 
+\begin{enumerate}
+\item Graph : Run `Sticky\_Wages/dynamics/Do\_IRFs\_SW\_baseline.m' 
+\end{enumerate}
+
+\subsection{The details}
+\begin{itemize}
+\item The `Julia` files takes care of computing the steady state, while
+the .m file simulates the model in the presence of aggregate shocks.
+\begin{itemize}
+\item The output of the `Julia` file is a file `todynare\_SW.mat' that will
+be used by `Octave` / `Matlab`. 
+\end{itemize}
+\item The outputs of the .m are: 
+\begin{itemize}
+\item `To\_IRFs\_SW.mat' 
+\item `To\_IRFs\_SP\_taylor.mat'
+\end{itemize}
+\item `Do\_IRFs\_SP\_baseline.m' generate IRFs\_SW\_Eco\_1\_4\_taylor.png 
+\end{itemize}
+
+\subsection{The steady state computation}
+
+The steady state is computed thanks to seven `Julia` notebooks. Each
+of above files are commented and self-explained.
+\begin{itemize}
+\item `Main.ipynb': Solves the steady-state model and returns the truncated
+model (as `steady\_state\_dynare.mat` for `Dynare`, saved in the current
+folder);
+\item `Structures.ipynb': Structures and parameter calibration from targets;
+\item `Utils.ipynb': Contains some useful functions;
+\item `SolveAiyagari.ipynb': Solves the Aiyagari model;
+\item `Projection.ipynb': Computes the steady-state truncated model;
+\item `Ramsey\_SP.ipynb': Computes the steady-state Lagrange multipliers.
+\item `ToDynare\_SW': Generate the output of the Julia file: `todynare\_SW.mat'
+that will be used by `Octave` / `Matlab`. 
+\end{itemize}
+Simulating the model with aggregate shocks, 
+\begin{itemize}
+\item The file `main\_SW.m` simulates the model for the first two economies
+of the section:
+\begin{itemize}
+\item Economy 1: optimal inflation
+\item Economy 2: constant wage inflation
+\end{itemize}
+\item The file `main\_SW\_taylor.m` simulates the model for third economy
+of the paper:
+\begin{itemize}
+\item Economy 3: Taylor Rule
+\end{itemize}
+\end{itemize}
+The outcomes of the program can be parametrized as follows:
+\begin{itemize}
+\item The `Octave` / `Matlab` actually writes three `Dynare' codes `code\_dynare\_SW1.mod',
+`code\_dynare\_SW4.mod', `code\_dynare\_SW\_taylor.mod' which correspond
+to the three economies. Each of this code is then solved in `Dynare'.
+These files, as interim Dynare files are created in the current folder.
+\end{itemize}
+
+\end{document}
